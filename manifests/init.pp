@@ -10,11 +10,17 @@ class freeradius (
   $wpa_supplicant  = false,
   $winbind_support = false,
   $syslog          = false,
+
+  ### START Hiera Lookups ###
+  $freeradius_client = {},
+  ### END Hiera Lookups ###
 ) inherits freeradius::params {
 
   if $control_socket == true {
     warning('Use of the control_socket parameter in the freeradius class is deprecated. Please use the freeradius::control_socket class instead.')
   }
+
+  create_resource('freeradius::client', $freeradius_client)
 
   file { 'radiusd.conf':
     name    => "${freeradius::fr_basepath}/radiusd.conf",
