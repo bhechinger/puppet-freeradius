@@ -20,7 +20,7 @@ class freeradius (
     warning('Use of the control_socket parameter in the freeradius class is deprecated. Please use the freeradius::control_socket class instead.')
   }
 
-  create_resource('freeradius::client', $freeradius_client)
+  create_resources('freeradius::client', $freeradius_client)
 
   file { 'radiusd.conf':
     name    => "${freeradius::fr_basepath}/radiusd.conf",
