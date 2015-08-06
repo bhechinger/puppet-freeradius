@@ -12,11 +12,18 @@ define freeradius::client (
   $srcip          = undef,
   $firewall       = false,
   $ensure         = present,
+
+  ### START Hiera Lookups ###
+  $freeradius_client = {},
+  ### END Hiera Lookups ###
+
 ) {
   $fr_package  = $::freeradius::params::fr_package
   $fr_service  = $::freeradius::params::fr_service
   $fr_basepath = $::freeradius::params::fr_basepath
   $fr_group    = $::freeradius::params::fr_group
+
+  create_resource('freeradius::client', $freeradius_client)
 
   file { "${fr_basepath}/clients.d/${shortname}.conf":
     ensure  => $ensure,
