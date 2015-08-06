@@ -13,6 +13,7 @@ class freeradius (
 
   ### START Hiera Lookups ###
   $freeradius_client = {},
+  $freeradius_sites   = {},
   ### END Hiera Lookups ###
 ) inherits freeradius::params {
 

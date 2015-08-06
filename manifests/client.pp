@@ -1,5 +1,5 @@
 # Install FreeRADIUS clients (WISMs or testing servers)
-class freeradius::client (
+define freeradius::client (
   $shortname,
   $secret,
   $ip             = undef,
